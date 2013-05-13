@@ -1,4 +1,4 @@
-statsd-log-line-counter
+statsd-log-lines-counter
 =======================
 
 deadly simple program that emits a hit to the statsd server for each line received.
