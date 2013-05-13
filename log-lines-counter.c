@@ -89,10 +89,16 @@ int main(int argc, char *argv[])
 
     while (getline(&line, &size, stdin) != -1) {
         statsd_count(metric_name, 1, sample_rate);
-        syslog(LOG_DEBUG, "sent hit to statsd @ sample rate: %2.2f", sample_rate);
+
+        if (verbose) {
+            syslog(LOG_DEBUG, "sent hit to statsd @ sample rate: %2.2f", sample_rate);
+        }
     }
 
-    syslog(LOG_DEBUG, "exiting...");
+    if (verbose) {
+        syslog(LOG_DEBUG, "exiting...");
+    }
+    
     statsd_finalize();
     return 0;
 }
