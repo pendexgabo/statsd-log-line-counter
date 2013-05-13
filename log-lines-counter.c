@@ -75,11 +75,11 @@ int main(int argc, char *argv[])
     }
 
     if (verbose) {
-        setlogmask(LOG_UPTO(LOG_DEBUG));
+        setlogmask(LOG_UPTO(LOG_INFO));
         openlog("log-lines-counter",  LOG_CONS | LOG_NDELAY | LOG_PERROR | LOG_PID, LOG_USER);
-        syslog(LOG_DEBUG, "statsd hosts: %s:%d", host, port);
-        syslog(LOG_DEBUG, "metric name: %s", metric_name);
-        syslog(LOG_DEBUG, "sample rate: %2.2f", sample_rate);
+        syslog(LOG_INFO, "statsd hosts: %s:%d", host, port);
+        syslog(LOG_INFO, "metric name: %s", metric_name);
+        syslog(LOG_INFO, "sample rate: %2.2f", sample_rate);
     }
 
     char *line = NULL;
@@ -91,12 +91,12 @@ int main(int argc, char *argv[])
         statsd_count(metric_name, 1, sample_rate);
 
         if (verbose) {
-            syslog(LOG_DEBUG, "sent hit to statsd @ sample rate: %2.2f", sample_rate);
+            syslog(LOG_INFO, "sent hit to statsd @ sample rate: %2.2f", sample_rate);
         }
     }
 
     if (verbose) {
-        syslog(LOG_DEBUG, "exiting...");
+        syslog(LOG_INFO, "exiting...");
     }
     
     statsd_finalize();
