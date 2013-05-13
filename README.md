@@ -10,10 +10,11 @@ Options
 -------
 
 ```
--N <metric> metric name to update (required)
--h <host>   statsd host (default: 127.0.0.1)
--p <post>   statsd port (default: 8125)
--s <rate>   sample rate (default: 1.00)
+-N <metric>         metric name to update (required)
+-h <host>           statsd host (default: 127.0.0.1)
+-p <post>           statsd port (default: 8125)
+-s <rate>           sample rate (default: 1.00)
+-v                  verbose mode
 ```
 
 Usage example
