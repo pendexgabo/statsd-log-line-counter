@@ -3,7 +3,7 @@ statsd-log-lines-counter
 
 deadly simple program that emits a hit to the statsd server for each line received.
 
-It makes use of the [statsd-c-client](https://github.com/romanbsd/statsd-c-client) lib.
+It makes use of the [statsd-c-client](https://github.com/romanbsd/statsd-c-client) lib AND the [PCRE](http://www.pcre.org/) lib
 
 
 Options
@@ -14,7 +14,10 @@ Options
 -h <host>           statsd host (default: 127.0.0.1)
 -p <post>           statsd port (default: 8125)
 -s <rate>           sample rate (default: 1.00)
--v                  verbose mode
+-d                  debug mode
+-e <pattern>        regex pattern to use
+-i                  ignore case distinctions in pattern
+-v                  invert match: select non-matching lines
 ```
 
 Usage example
@@ -33,6 +36,11 @@ sending apache hits to statsd at `0.20` sample rate so its **not too** intensive
 cat /var/log/httpd/access_log | ./log-lines-counter -N ops.apache.errors -s 0.20
 ```
 
+getting only the lines that contanins `POST` on it (case insensitive)
+
+```
+cat /var/log/httpd/access_log | ./log-lines-counter -N ops.apache.errors -s 0.20 -e "POST" -i
+```
 
 ### Usage with syslog-ng ###
 
